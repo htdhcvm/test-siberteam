@@ -65,7 +65,7 @@ public class CardTest {
         Card cardSecond = new Card(denomination, suit);
         
         // then
-        assertEquals(cardFirst.equals(cardSecond), expect);
+        assertEquals(expect, cardFirst.equals(cardSecond));
     }
     
     
@@ -86,6 +86,6 @@ public class CardTest {
         Card cardSecond = new Card(denominationSecond, suitSecond);
         
         // then
-        assertEquals(cardFirst.equals(cardSecond), expect);
+        assertEquals(expect, cardFirst.equals(cardSecond));
     }
 }

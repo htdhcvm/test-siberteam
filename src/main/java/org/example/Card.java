@@ -11,11 +11,13 @@ public class Card {
     
     private final Suit suit;
     
-    public Card(String cardDenomination, String suit) throws ValidateionException {
+    public Card(
+            String cardDenomination,
+            String suit
+    ) throws ValidateionException {
         this.cardDenomination = new CardDenomination(cardDenomination);
         this.suit = new Suit(suit);
     }
-    
     
     @Override
     public boolean equals(Object o) {

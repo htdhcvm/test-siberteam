@@ -10,7 +10,7 @@ public final class Suit extends ValueObject<String> {
     
     @Override
     protected boolean isValidate(String value) {
-
+        
         for (SuitValue suitValue : SuitValue.values()) {
             if (suitValue.name()
                     .equals(value)) {

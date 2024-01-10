@@ -20,7 +20,7 @@ public class SuitTest {
         Suit suit = new Suit(value);
         
         // then
-        assertEquals(suit.getValue(), value);
+        assertEquals(value, suit.getValue());
     }
     
     @Test
@@ -33,7 +33,7 @@ public class SuitTest {
         ValidateionException exception = assertThrows(ValidateionException.class, () -> new Suit(value));
         
         // then
-        assertEquals(exception.getMessage(), expect);
+        assertEquals(expect, exception.getMessage());
     }
     
     @Test

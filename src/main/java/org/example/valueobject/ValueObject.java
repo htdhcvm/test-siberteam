@@ -5,7 +5,7 @@ import org.example.ValidateionException;
 import java.util.Objects;
 
 public abstract class ValueObject<T> {
-    public static String TEXT_ERROR ="Value is not valid:";
+    public static String TEXT_ERROR = "Value is not valid:";
     private final T value;
     
     public ValueObject(T value) throws ValidateionException {

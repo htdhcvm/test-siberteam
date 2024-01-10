@@ -1,6 +1,6 @@
 package org.example;
 
-public final class Pair <K, V>{
+public final class Pair<K, V> {
     private final K key;
     private final V value;
     

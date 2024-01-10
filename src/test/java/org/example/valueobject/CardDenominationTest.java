@@ -10,10 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CardDenominationTest {
     
-    
     @ParameterizedTest
     @EnumSource(CardDenominationValue.class)
-    public void cardDenominationShouldBeCreated(CardDenominationValue cardDenominationValue) throws ValidateionException {
+    public void cardDenominationShouldBeCreated(CardDenominationValue cardDenominationValue) throws
+                                                                                             ValidateionException {
         // given
         String value = cardDenominationValue.getValue();
         
@@ -21,7 +21,7 @@ public class CardDenominationTest {
         CardDenomination cardDenomination = new CardDenomination(value);
         
         // then
-        assertEquals(cardDenomination.getValue(), value);
+        assertEquals(value, cardDenomination.getValue());
     }
     
     
@@ -35,9 +35,8 @@ public class CardDenominationTest {
         ValidateionException exception = assertThrows(ValidateionException.class, () -> new CardDenomination(value));
         
         // then
-        assertEquals(exception.getMessage(), expect);
+        assertEquals(expect, exception.getMessage());
     }
-    
     
     
     @Test
@@ -70,7 +69,4 @@ public class CardDenominationTest {
         // then
         assertEquals(expect, isEquals);
     }
-    
-    
-    
 }
