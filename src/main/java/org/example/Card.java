@@ -5,7 +5,7 @@ import org.example.valueobject.Suit;
 
 import java.util.Objects;
 
-public class Card {
+public class Card implements Comparable<Card> {
     
     private final CardDenomination cardDenomination;
     
@@ -47,5 +47,10 @@ public class Card {
     
     public Suit getSuit() {
         return suit;
+    }
+    
+    @Override
+    public int compareTo(Card card) {
+        return cardDenomination.compareTo(card.cardDenomination);
     }
 }

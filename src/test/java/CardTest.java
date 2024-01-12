@@ -75,7 +75,6 @@ public class CardTest {
         String denominationFirst = "2";
         String suitFirst = "S";
         
-        
         String denominationSecond = "3";
         String suitSecond = "S";
         

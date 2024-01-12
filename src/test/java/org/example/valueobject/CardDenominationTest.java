@@ -69,4 +69,49 @@ public class CardDenominationTest {
         // then
         assertEquals(expect, isEquals);
     }
+    
+    
+    @Test
+    public void cardDenominationsShouldEquals() throws ValidateionException {
+        // given
+        CardDenomination cardDenominationFirst = new CardDenomination("2");
+        CardDenomination cardDenominationSecond = new CardDenomination("2");
+        
+        Integer expect = 0;
+        // when
+        Integer response = cardDenominationFirst.compareTo(cardDenominationSecond);
+        
+        // then
+        assertEquals(expect, response);
+    }
+    
+    
+    @Test
+    public void cardDenominationsFirstShouldBeBigger() throws ValidateionException {
+        // given
+        CardDenomination cardDenominationFirst = new CardDenomination("3");
+        CardDenomination cardDenominationSecond = new CardDenomination("2");
+        
+        Integer expect = 1;
+        // when
+        Integer response = cardDenominationFirst.compareTo(cardDenominationSecond);
+        
+        // then
+        assertEquals(expect, response);
+    }
+    
+    @Test
+    public void cardDenominationsFirstShouldBeLess() throws ValidateionException {
+        // given
+        CardDenomination cardDenominationFirst = new CardDenomination("2");
+        CardDenomination cardDenominationSecond = new CardDenomination("3");
+        
+        Integer expect = -1;
+        
+        // when
+        Integer response = cardDenominationFirst.compareTo(cardDenominationSecond);
+        
+        // then
+        assertEquals(expect, response);
+    }
 }
