@@ -9,8 +9,12 @@ public class CardDenomination extends ValueObject<String> implements Comparable<
         super(value);
     }
     
+    public boolean equalsValue(CardDenominationValue cardDenominationValue) {
+        return getValue().equals(cardDenominationValue.getValue());
+    }
+    
     @Override
-    protected boolean isValidate(String value) throws ValidateionException {
+    protected boolean isValidate(String value) {
         for (CardDenominationValue cardDenominationValue : CardDenominationValue.values()) {
             if (cardDenominationValue.getValue()
                     .equals(value)) {
@@ -35,5 +39,10 @@ public class CardDenomination extends ValueObject<String> implements Comparable<
         }
         
         return 1;
+    }
+    
+    
+    public Integer getWeight() {
+        return CardDenominationValue.getWeight(this.getValue());
     }
 }

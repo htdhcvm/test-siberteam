@@ -40,26 +40,29 @@ public class PokerHand implements Comparable<PokerHand> {
         ranging();
     }
     
+    private boolean isPokerHandHaveOnlyOneSuit() {
+        return cardSuitCountMap.size() == 1;
+    }
+    
     private void ranging() {
-        // 1.
-        if (cardSuitCountMap.size() == 1) {
+        if (isPokerHandHaveOnlyOneSuit()) {
             if (isIncreasingSequence) {
-                if (Objects.equals(cardListSort.get(0)
-                                           .getCardDenomination()
-                                           .getValue(), CardDenominationValue.TEN.getValue())) {
+                Card firstCard = cardListSort.get(0);
+                
+                if (firstCard.getCardDenomination()
+                        .equalsValue(CardDenominationValue.TEN)) {
                     rank = RankPokerHand.ROYAL_FLUSH;
                     return;
-                } else {
-                    rank = RankPokerHand.STRAIGHT_FLUSH;
-                    return;
                 }
-            } else {
-                rank = RankPokerHand.FLASH;
+                
+                rank = RankPokerHand.STRAIGHT_FLUSH;
                 return;
             }
+            
+            rank = RankPokerHand.FLASH;
+            return;
         }
         
-        // 2.
         boolean isCare = cardDenominationCountMap.values()
                 .stream()
                 .anyMatch(v -> v == 4);
@@ -100,11 +103,9 @@ public class PokerHand implements Comparable<PokerHand> {
             return;
         }
         
-        
         if (cardDenominationCountMap.size() != 5) {
             rank = RankPokerHand.TWO_PAIRS;
         }
-        
     }
     
     public RankPokerHand getRank() {
@@ -113,13 +114,11 @@ public class PokerHand implements Comparable<PokerHand> {
     
     private void checkSequenceOnIncrease() {
         Card first = cardListSort.get(0);
+        int firstWeight = first.getWeight();
         
-        int firstWeight = CardDenominationValue.getWeight(first.getCardDenomination()
-                                                                  .getValue());
         for (Card card : cardListSort) {
+            int weight = card.getWeight() - firstWeight;
             
-            int weight = CardDenominationValue.getWeight(card.getCardDenomination()
-                                                                 .getValue()) - firstWeight;
             if (weight != 0) {
                 isIncreasingSequence = false;
             }
@@ -132,8 +131,8 @@ public class PokerHand implements Comparable<PokerHand> {
             CardDenomination cardDenomination = card.getCardDenomination();
             Suit suit = card.getSuit();
             
-            cardDenominationCountMap.merge(cardDenomination, 1, (oldValue, current) -> oldValue += 1);
-            cardSuitCountMap.merge(suit, 1, (oldValue, current) -> oldValue += 1);
+            cardDenominationCountMap.merge(cardDenomination, 1, (oldValue, current) -> oldValue + 1);
+            cardSuitCountMap.merge(suit, 1, (oldValue, current) -> oldValue + 1);
         }
     }
     
@@ -157,7 +156,9 @@ public class PokerHand implements Comparable<PokerHand> {
     
     @Override
     public String toString() {
-        String cardListString = cardList.stream().map(v -> String.format("{%s}", v)).collect(joining(" "));
+        String cardListString = cardList.stream()
+                .map(v -> String.format("%s", v))
+                .collect(joining(" "));
         return String.format("PokerHand(%s) [ %s ]", getRank(), cardListString);
     }
     
@@ -178,19 +179,18 @@ public class PokerHand implements Comparable<PokerHand> {
     
     @Override
     public int compareTo(PokerHand o) {
-        Integer r1 = this.getRank().getRank();
-        Integer r2 = o.getRank().getRank();
+        Integer r1 = this.getRank()
+                .getRank();
+        Integer r2 = o.getRank()
+                .getRank();
         
-        
-        if(Objects.equals(r1, r2)) {
+        if (Objects.equals(r1, r2)) {
             return 0;
         }
         
-        
-        if(r1 < r2) {
+        if (r1 < r2) {
             return -1;
         }
-        
         
         return 1;
     }

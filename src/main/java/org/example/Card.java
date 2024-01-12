@@ -19,6 +19,7 @@ public class Card implements Comparable<Card> {
         this.suit = new Suit(suit);
     }
     
+    
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -52,5 +53,10 @@ public class Card implements Comparable<Card> {
     @Override
     public int compareTo(Card card) {
         return cardDenomination.compareTo(card.cardDenomination);
+    }
+    
+    
+    public Integer getWeight() {
+        return cardDenomination.getWeight();
     }
 }
